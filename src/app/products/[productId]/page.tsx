@@ -1,12 +1,10 @@
-import { Suspense } from "react";
 import ProductDetail from "@/components/ProductDetail";
+import { fetchProduct } from "@/lib/fetchProduct";
 
-const ProductPage = ({ params }: { params: { productId: string } }) => {
-  return (
-    <Suspense fallback={<p>Loading product...</p>}>
-      <ProductDetail productId={params.productId} />
-    </Suspense>
-  );
+const ProductPage = async ({ params }: { params: { productId: string } }) => {
+  const { productId } = params
+  const product = await fetchProduct(productId);
+  return <ProductDetail product={product} />
 };
 
 export default ProductPage;
