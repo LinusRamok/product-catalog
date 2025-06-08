@@ -5,7 +5,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/product-catalog.git
+git clone https://github.com/LinusRamok/product-catalog.git
 cd product-catalog
 
 # 2. Install dependencies
