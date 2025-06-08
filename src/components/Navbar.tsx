@@ -4,5 +4,5 @@ const Navbar = () => {
       <h1 className="font-bold text-lg">Product Catalog</h1>
     </nav>
   );
-}
-export default Navbar
+};
+export default Navbar;
