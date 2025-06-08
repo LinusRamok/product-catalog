@@ -1,34 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 
-const ProductDetail = ({ productId }: { productId: string }) => {
+const ProductDetail = ({ product }: { product: any }) => {
   const { addToCart } = useCart();
-  const [product, setProduct] = useState<any>(null);
-  const [error, setError] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const res = await fetch(`https://dummyjson.com/products/${productId}`);
-        if (res.status === 404) return router.push("/not-found");
-        if (!res.ok) throw new Error("Failed to fetch product");
-        const data = await res.json();
-        setProduct(data);
-      } catch (err) {
-        setError(true);
-      }
-    }
-    fetchProduct();
-  }, [productId, router]);
-
-  if (error)
-    return (
-      <p className="text-red-500">Failed to load product. Please try again.</p>
-    );
-  if (!product) return <p>Loading...</p>;
 
   return (
     <div className="max-w-xl mx-auto bg-white shadow p-6 rounded">
@@ -49,5 +23,4 @@ const ProductDetail = ({ productId }: { productId: string }) => {
     </div>
   );
 };
-
 export default ProductDetail;
