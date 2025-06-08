@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 const ProductDetail = ({ productId }: { productId: string }) => {
+  const { addToCart } = useCart();
   const [product, setProduct] = useState<any>(null);
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -38,7 +40,10 @@ const ProductDetail = ({ productId }: { productId: string }) => {
       <h1 className="text-2xl font-bold mt-4">{product.title}</h1>
       <p className="text-gray-700 mt-2">{product.description}</p>
       <p className="text-green-600 font-bold mt-2">${product.price}</p>
-      <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      <button
+        onClick={() => addToCart(product.id)}
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      >
         Add to Cart
       </button>
     </div>
